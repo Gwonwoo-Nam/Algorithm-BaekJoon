@@ -30,6 +30,5 @@ public class Main {
         }
         double result = sum/average.length;
         System.out.println(result);
-
     }
 }
