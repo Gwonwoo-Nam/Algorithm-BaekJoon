@@ -1,22 +1,13 @@
-import datetime
 import sys
-s,e,q = sys.stdin.readline().split(" ")
 
-hour, minute = map(int, s.split(":"))
-s = datetime.time(hour, minute)
-hour, minute = map(int, e.split(":"))
-e = datetime.time(hour, minute)
-hour, minute = map(int, q.split(":"))
-q = datetime.time(hour, minute)
+s,e,q = map(lambda s: int(s.replace(':','')), sys.stdin.readline().split(" "))
 
 checker = dict()
 
-str = ""
 while True :
   try:
-    str = sys.stdin.readline()
-    hour, minute = map(int, str.split(" ")[0].split(":"))
-    t = datetime.time(hour, minute)
+    str = sys.stdin.readline()[:-1]
+    t = int(str.split(" ")[0].replace(':',''))
     if checker.get(str.split(" ")[1]) == None and (t <= s) :
       checker[str.split(" ")[1]] = 1
     if checker.get(str.split(" ")[1]) == 1 and (t >= e and t <= q) :
