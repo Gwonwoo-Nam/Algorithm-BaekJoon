@@ -9,20 +9,14 @@ for i in range (n) :
 visited = [[0 for i in range(m)] for j in range(n)]
 q = deque()
 q.append((0,0,0))
+move = [[1,0],[0,1],[-1,0],[0,-1]]
 while len(q) > 0 :
     r, c, count = q.popleft()
     if r==n-1 and c == m-1 :
         print(count+1)
         break
-    if r+1 < n and map[r+1][c] == '1' and visited[r+1][c] == 0 :
-        visited[r+1][c] = 1
-        q.append((r+1,c,count+1))
-    if c+1 < m and map[r][c+1] == '1' and visited[r][c+1] == 0:
-        visited[r][c+1] = 1
-        q.append((r,c+1,count+1))
-    if r-1 >= 0 and map[r-1][c] == '1' and visited[r-1][c] == 0:
-        visited[r-1][c] = 1
-        q.append((r-1,c,count+1))
-    if c-1 >= 0 and map[r][c-1] == '1' and visited[r][c-1] == 0:
-        visited[r][c-1] = 1
-        q.append((r,c-1,count+1))
+    for dx,dy in move :
+        if r+dx < n and r+dx >= 0 and c+dy < m and c+dy >= 0 :
+            if map[r+dx][c+dy] == '1' and visited[r+dx][c+dy] == 0 :
+                visited[r+dx][c+dy] = 1
+                q.append((r+dx,c+dy,count+1))
